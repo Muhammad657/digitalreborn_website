@@ -566,6 +566,165 @@
         .team-card {
           flex-basis: 100%;
         }
+
+        @media (max-width: 768px) {
+          .container {
+            padding: 0 20px !important;
+          }
+
+          section {
+            padding: 48px 0 !important;
+          }
+
+          /* Fix navbar */
+          .navbar {
+            padding: 0 20px !important;
+            height: auto !important;
+            flex-direction: column;
+            gap: 15px;
+            padding: 15px 20px !important;
+          }
+
+          .nav-links {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem !important;
+          }
+
+          .nav-button {
+            padding: 8px 20px !important;
+            font-size: 0.8rem !important;
+          }
+
+          /* Fix hero section */
+          .hero {
+            grid-template-columns: 1fr !important;
+            text-align: center;
+            padding: 40px 0 20px !important;
+          }
+
+          .hero h1 {
+            font-size: 2rem !important;
+          }
+
+          .hero p {
+            margin-left: auto;
+            margin-right: auto;
+          }
+
+          .btn-group {
+            justify-content: center;
+            flex-wrap: wrap;
+          }
+
+          /* Fix Lottie animation */
+          .hero > div:last-child {
+            padding-left: 0 !important;
+          }
+
+          dotlottie-wc {
+            width: 250px !important;
+            height: 250px !important;
+            transform: scale(1) !important;
+          }
+
+          /* Fix all grid layouts */
+          .card-grid,
+          .team-grid,
+          [style*="display: grid"] {
+            grid-template-columns: 1fr !important;
+            gap: 24px !important;
+          }
+
+          /* Fix step cards */
+          .steps-creative {
+            flex-direction: column;
+          }
+
+          .step-card {
+            min-width: auto !important;
+          }
+
+          /* Fix donation page */
+          #page-donation [style*="grid-template-columns: 1fr 1fr"] {
+            grid-template-columns: 1fr !important;
+          }
+
+          /* Fix iframe */
+          iframe {
+            height: 700px !important;
+          }
+
+          /* Fix footer */
+          footer {
+            flex-direction: column;
+            text-align: center;
+            gap: 20px;
+            padding: 40px 20px !important;
+          }
+
+          .footer-links a {
+            margin: 0 15px !important;
+          }
+
+          /* Fix form cards */
+          .form-card-centered {
+            padding: 32px 24px !important;
+          }
+
+          /* Fix stat blocks */
+          .stats-wrapper {
+            grid-template-columns: 1fr !important;
+          }
+
+          /* Fix all text sizes */
+          h2 {
+            font-size: 1.8rem !important;
+          }
+
+          h3 {
+            font-size: 1.3rem !important;
+          }
+
+          /* Fix spacing */
+          .team-card {
+            flex-basis: 100% !important;
+          }
+
+          .donation-card {
+            padding: 32px 24px !important;
+          }
+        }
+
+        /* Small phones (up to 480px) */
+        @media (max-width: 480px) {
+          .hero h1 {
+            font-size: 1.6rem !important;
+          }
+
+          .btn-primary,
+          .btn-outline {
+            padding: 12px 24px !important;
+            font-size: 0.9rem !important;
+          }
+
+          .nav-links a {
+            font-size: 0.8rem !important;
+          }
+
+          .logo {
+            font-size: 1.2rem !important;
+          }
+
+          .card {
+            padding: 24px 20px !important;
+          }
+
+          .banner-premium,
+          .banner-white {
+            padding: 32px 24px !important;
+          }
+        }
       }
     </style>
   </head>
