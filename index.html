@@ -567,6 +567,9 @@
           flex-basis: 100%;
         }
 
+        /* Add these at the end of your <style> tag */
+
+        /* Mobile phones (up to 768px) */
         @media (max-width: 768px) {
           .container {
             padding: 0 20px !important;
@@ -592,8 +595,7 @@
           }
 
           .nav-button {
-            padding: 8px 20px !important;
-            font-size: 0.8rem !important;
+            display: none !important; /* HIDE DONATE BUTTON ON MOBILE */
           }
 
           /* Fix hero section */
@@ -617,15 +619,13 @@
             flex-wrap: wrap;
           }
 
-          /* Fix Lottie animation */
+          /* COMPLETELY REMOVE THE ANIMATION ON MOBILE */
           .hero > div:last-child {
-            padding-left: 0 !important;
+            display: none !important;
           }
 
           dotlottie-wc {
-            width: 250px !important;
-            height: 250px !important;
-            transform: scale(1) !important;
+            display: none !important;
           }
 
           /* Fix all grid layouts */
@@ -693,6 +693,11 @@
 
           .donation-card {
             padding: 32px 24px !important;
+          }
+
+          /* Fix any inline transforms that cause issues */
+          [style*="transform: translateY"] {
+            transform: none !important;
           }
         }
 
