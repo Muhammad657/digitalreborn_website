@@ -1,0 +1,2188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Digital Reborn — thoughtful tech revival</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          "Inter",
+          system-ui,
+          -apple-system,
+          sans-serif;
+        background: #ffffff;
+        color: #1e293b;
+        line-height: 1.5;
+        scroll-behavior: smooth;
+      }
+
+      :root {
+        --primary: #2c5f8a;
+        --primary-dark: #1d4464;
+        --primary-soft: #eef3fa;
+        --accent: #d87c3c;
+        --accent-light: #fef0e6;
+        --sand: #f7f3eb;
+        --gray-50: #faf9f7;
+        --gray-100: #f1efea;
+        --gray-200: #e4e0d8;
+        --gray-300: #d6d2ca;
+        --gray-500: #73716c;
+        --gray-700: #3f3e3a;
+        --gray-900: #1e1c19;
+        --white: #ffffff;
+        --shadow-sm:
+          0 4px 8px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0, 0, 0, 0.03);
+        --shadow-md:
+          0 12px 28px -8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.01);
+        --shadow-lg: 0 28px 38px -16px rgba(0, 0, 0, 0.12);
+        --transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      }
+
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 48px;
+      }
+
+      section {
+        padding: 96px 0;
+      }
+
+      /* navbar with logo image placeholder */
+      .navbar {
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--gray-200);
+        padding: 0 48px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .logo-area {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .logo-icon {
+        width: 38px;
+        height: 38px;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 700;
+        font-size: 1.1rem;
+      }
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+      }
+
+      .nav-links a {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--gray-700);
+        text-decoration: none;
+        cursor: pointer;
+        position: relative;
+        padding: 4px 0;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--accent);
+        transition: width 0.25s ease;
+      }
+
+      .nav-links a:hover::after,
+      .nav-links a.active::after {
+        width: 100%;
+      }
+
+      .nav-links a.active {
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      .nav-button {
+        background: var(--primary);
+        color: white;
+        font-size: 0.85rem;
+        font-weight: 600;
+        padding: 10px 26px;
+        border-radius: 44px;
+        border: none;
+        cursor: pointer;
+        transition: var(--transition);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      }
+
+      .nav-button:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 20px -12px var(--primary);
+      }
+
+      .page {
+        display: none;
+        animation: fadeUp 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      }
+
+      .page.active {
+        display: block;
+      }
+
+      @keyframes fadeUp {
+        0% {
+          opacity: 0;
+          transform: translateY(28px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* hero */
+      .hero {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: center;
+        padding: 72px 0 32px;
+      }
+
+      .hero-badge {
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--accent);
+        background: var(--accent-light);
+        display: inline-block;
+        padding: 6px 16px;
+        border-radius: 40px;
+        margin-bottom: 28px;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        color: var(--gray-900);
+        margin-bottom: 24px;
+      }
+
+      .hero-highlight {
+        color: var(--primary);
+        border-bottom: 3px solid var(--accent);
+      }
+
+      .hero p {
+        font-size: 1.05rem;
+        color: var(--gray-500);
+        max-width: 460px;
+        margin-bottom: 36px;
+        line-height: 1.65;
+      }
+
+      .btn-group {
+        display: flex;
+        gap: 18px;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: white;
+        padding: 14px 32px;
+        border-radius: 48px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-dark);
+        transform: translateY(-3px);
+        box-shadow: 0 15px 25px -12px var(--primary);
+      }
+
+      .btn-outline {
+        background: transparent;
+        border: 1.5px solid var(--gray-300);
+        padding: 14px 32px;
+        border-radius: 48px;
+        font-weight: 500;
+        color: var(--gray-700);
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .btn-outline:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: rgba(216, 124, 60, 0.04);
+        transform: translateY(-2px);
+      }
+
+      .hero-visual {
+        background: linear-gradient(145deg, #eaecee, #f5efe8);
+        border-radius: 48px;
+        min-height: 420px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 500;
+      }
+
+      /* cards */
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+      }
+      .card {
+        background: var(--white);
+        border-radius: 36px;
+        padding: 40px 32px;
+        border: 1px solid var(--gray-200);
+        transition: var(--transition);
+      }
+      .card:hover {
+        transform: translateY(-12px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      /* creative steps */
+      .steps-creative {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 24px;
+        margin-top: 48px;
+      }
+      .step-card {
+        flex: 1;
+        min-width: 200px;
+        background: var(--white);
+        border-radius: 32px;
+        padding: 32px 24px;
+        text-align: center;
+        border: 1px solid var(--gray-200);
+        transition: var(--transition);
+      }
+      .step-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-lg);
+      }
+      .step-number-lg {
+        font-size: 3rem;
+        font-weight: 800;
+        color: var(--accent);
+        opacity: 0.3;
+        line-height: 1;
+        margin-bottom: 12px;
+      }
+
+      /* about cards — beautifully restyled */
+      .team-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+        margin-top: 56px;
+      }
+      .team-card {
+        flex: 0 0 calc(33.33% - 40px);
+        min-width: 280px;
+        background: var(--white);
+        border-radius: 40px;
+        overflow: hidden;
+        transition: var(--transition);
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--gray-200);
+        position: relative;
+      }
+      .team-card:hover {
+        transform: translateY(-12px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--accent-light);
+      }
+      .team-img {
+        height: 240px;
+        background: linear-gradient(145deg, #e2ddd4, #d4cdc2);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .team-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+        display: block;
+      }
+      .team-info {
+        padding: 28px 28px 32px;
+      }
+      .team-name {
+        font-weight: 800;
+        font-size: 1.4rem;
+        margin-bottom: 6px;
+        letter-spacing: -0.3px;
+      }
+      .team-role {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        color: var(--accent);
+        margin-bottom: 16px;
+        font-weight: 600;
+      }
+      .team-bio {
+        color: var(--gray-500);
+        line-height: 1.6;
+        font-size: 0.9rem;
+      }
+      .team-card::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 3px;
+        background: var(--accent);
+        transition: width 0.3s ease;
+      }
+      .team-card:hover::after {
+        width: 100%;
+      }
+
+      .banner-premium {
+        background: linear-gradient(115deg, #1e3e58 0%, #2d577a 100%);
+        border-radius: 48px;
+        padding: 56px 48px;
+        text-align: center;
+        color: white;
+        margin: 48px 0 0;
+        transition: transform 0.2s;
+      }
+      .banner-premium:hover {
+        transform: scale(1.01);
+      }
+      .banner-white {
+        background: var(--sand);
+        border-radius: 48px;
+        padding: 48px 40px;
+        text-align: center;
+        border: 1px solid var(--gray-200);
+        margin-top: 56px;
+      }
+
+      .donation-card {
+        background: var(--white);
+        border-radius: 48px;
+        padding: 48px 40px;
+        border: 1px solid var(--gray-200);
+        transition: var(--transition);
+      }
+      .donation-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-lg);
+      }
+      .device-steps-modern {
+        background: var(--gray-50);
+        border-radius: 32px;
+        padding: 32px;
+        margin: 24px 0 28px;
+      }
+      .step-list {
+        list-style: none;
+        padding: 0;
+      }
+      .step-list li {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 20px;
+        font-size: 0.95rem;
+      }
+      .step-marker {
+        width: 36px;
+        height: 36px;
+        background: var(--primary);
+        color: white;
+        border-radius: 60px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+      }
+
+      /* centered contact form */
+      .contact-centered {
+        display: flex;
+        justify-content: center;
+        margin-top: 48px;
+      }
+      .form-card-centered {
+        max-width: 680px;
+        width: 100%;
+        background: var(--white);
+        border-radius: 48px;
+        padding: 56px 48px;
+        border: 1px solid var(--gray-200);
+        box-shadow: var(--shadow-md);
+      }
+      .input-group {
+        margin-bottom: 28px;
+      }
+      .input-group input,
+      .input-group textarea {
+        width: 100%;
+        padding: 18px 24px;
+        border: 1px solid var(--gray-300);
+        border-radius: 32px;
+        font-family: inherit;
+        font-size: 0.95rem;
+        background: var(--gray-50);
+        transition: all 0.2s;
+      }
+      .input-group input:focus,
+      .input-group textarea:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 4px rgba(44, 95, 138, 0.08);
+        outline: none;
+        background: white;
+      }
+      .submit-btn {
+        background: var(--primary);
+        color: white;
+        width: 100%;
+        padding: 18px;
+        border-radius: 48px;
+        font-weight: 700;
+        font-size: 1rem;
+        border: none;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      .submit-btn:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+      }
+
+      .feature-band {
+        background: linear-gradient(115deg, #1e3e58 0%, #2d577a 100%);
+        border-radius: 48px;
+        padding: 64px 56px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: center;
+      }
+      .stats-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .stat-block {
+        background: rgba(255, 255, 250, 0.1);
+        border-radius: 28px;
+        padding: 24px;
+      }
+
+      footer {
+        background: #1e2a36;
+        padding: 56px 48px;
+        margin-top: 96px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      .footer-links a {
+        color: #b2c1d0;
+        text-decoration: none;
+        margin-left: 40px;
+        cursor: pointer;
+      }
+      @media (max-width: 900px) {
+        .container {
+          padding: 0 24px;
+        }
+        .hero,
+        .card-grid,
+        .donation-split,
+        .feature-band {
+          grid-template-columns: 1fr;
+        }
+        .steps-creative {
+          flex-direction: column;
+        }
+        .navbar {
+          padding: 0 24px;
+        }
+        .team-card {
+          flex-basis: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo-area">
+        <div aria-label="Digital Reborn logo mark" role="img">
+          <img src="Digital_Reborn_Logo.png" style="height: 40px" />
+        </div>
+        <div class="logo">Digital Reborn</div>
+      </div>
+      <div class="nav-links">
+        <a onclick="showPage('home')" id="nav-home" class="active">Home</a>
+        <a onclick="showPage('ourgoal')" id="nav-ourgoal">Our goal</a>
+        <a onclick="showPage('about')" id="nav-about">About</a>
+        <a onclick="showPage('donation')" id="nav-donation">Donate</a>
+        <a onclick="showPage('contact')" id="nav-contact">Contact</a>
+      </div>
+      <button class="nav-button" onclick="showPage('donation')">
+        Donate a device →
+      </button>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div class="page active" id="page-home">
+      <div class="container" style="padding-top: 64px">
+        <div class="hero">
+          <div>
+            <h1>
+              Your old device,
+              <span class="hero-highlight">their new start</span>
+            </h1>
+            <p>
+              We collect, restore, and redistribute electronics to students and
+              families who need them most.
+            </p>
+            <div class="btn-group">
+              <button class="btn-primary" onclick="showPage('donation')">
+                Donate a device
+              </button>
+              <button class="btn-outline" onclick="showPage('ourgoal')">
+                Discover mission
+              </button>
+            </div>
+          </div>
+          <div style="padding-left: 50px">
+            <script
+              src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.14/dist/dotlottie-wc.js"
+              type="module"
+            ></script>
+            <dotlottie-wc
+              src="https://lottie.host/3889b69e-4af2-42c4-ae85-b433b0522989/m3Y6VPOyNZ.lottie"
+              style="width: 400px; height: 400px; transform: scale(1.5)"
+              autoplay
+              loop
+            ></dotlottie-wc>
+          </div>
+        </div>
+      </div>
+
+      <!-- <section
+        style="
+          background: linear-gradient(180deg, #f8f7f4 0%, #f4f1eb 100%);
+          position: relative;
+          overflow: hidden;
+        "
+      >
+        <div
+          style="
+            position: absolute;
+            top: -120px;
+            right: -100px;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: rgba(196, 163, 120, 0.08);
+            filter: blur(10px);
+          "
+        ></div>
+
+        <div
+          style="
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            background: rgba(160, 138, 110, 0.07);
+            filter: blur(10px);
+          "
+        ></div>
+
+        <div class="container" style="position: relative; z-index: 2">
+          <div
+            style="text-align: center; max-width: 720px; margin: 0 auto 60px"
+          >
+            <div
+              class="hero-badge"
+              style="
+                background: rgba(140, 110, 80, 0.08);
+                color: #7b5e45;
+                border: 1px solid rgba(123, 94, 69, 0.08);
+              "
+            >
+              Our process
+            </div>
+
+            <h2
+              style="
+                font-size: 2.7rem;
+                font-weight: 800;
+                line-height: 1.1;
+                color: #2a241f;
+                margin-top: 18px;
+              "
+            >
+              Giving technology a second life
+            </h2>
+
+            <p
+              style="
+                color: #7b746c;
+                font-size: 1.05rem;
+                line-height: 1.8;
+                margin-top: 16px;
+              "
+            >
+              Every donated device moves through a thoughtful restoration
+              process, reducing e-waste while creating access for students and
+              families.
+            </p>
+          </div>
+
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(3, 1fr);
+              gap: 28px;
+            "
+          >
+            <div
+              style="
+                background: rgba(255, 255, 255, 0.72);
+                backdrop-filter: blur(14px);
+                border-radius: 30px;
+                padding: 34px;
+                border: 1px solid rgba(0, 0, 0, 0.04);
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+                transition: 0.3s ease;
+              "
+            >
+              <div
+                style="
+                  width: 62px;
+                  height: 62px;
+                  border-radius: 18px;
+                  background: #efe5d8;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 1.5rem;
+                  margin-bottom: 22px;
+                "
+              >
+                ♻️
+              </div>
+
+              <h3
+                style="font-size: 1.5rem; margin-bottom: 14px; color: #2a241f"
+              >
+                Recover
+              </h3>
+
+              <p style="color: #756d65; line-height: 1.8; font-size: 0.98rem">
+                We collect unused laptops, tablets, and phones throughout
+                Massachusetts, keeping valuable technology out of landfills.
+              </p>
+            </div>
+
+            <div
+              style="
+                background: rgba(255, 255, 255, 0.72);
+                backdrop-filter: blur(14px);
+                border-radius: 30px;
+                padding: 34px;
+                border: 1px solid rgba(0, 0, 0, 0.04);
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+                transform: translateY(22px);
+              "
+            >
+              <div
+                style="
+                  width: 62px;
+                  height: 62px;
+                  border-radius: 18px;
+                  background: #ede7da;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 1.5rem;
+                  margin-bottom: 22px;
+                "
+              >
+                🛠️
+              </div>
+
+              <h3
+                style="font-size: 1.5rem; margin-bottom: 14px; color: #2a241f"
+              >
+                Rebuild
+              </h3>
+
+              <p style="color: #756d65; line-height: 1.8; font-size: 0.98rem">
+                Volunteers repair, upgrade, and test each device carefully. All
+                personal data is securely erased before redistribution.
+              </p>
+            </div>
+
+            <div
+              style="
+                background: rgba(255, 255, 255, 0.72);
+                backdrop-filter: blur(14px);
+                border-radius: 30px;
+                padding: 34px;
+                border: 1px solid rgba(0, 0, 0, 0.04);
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+              "
+            >
+              <div
+                style="
+                  width: 62px;
+                  height: 62px;
+                  border-radius: 18px;
+                  background: #efe5d8;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 1.5rem;
+                  margin-bottom: 22px;
+                "
+              >
+                ❤️
+              </div>
+
+              <h3
+                style="font-size: 1.5rem; margin-bottom: 14px; color: #2a241f"
+              >
+                Reach
+              </h3>
+
+              <p style="color: #756d65; line-height: 1.8; font-size: 0.98rem">
+                Restored devices are distributed to local students and families
+                at absolutely no cost, creating meaningful educational access.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section> -->
+
+      <section
+        style="background: #f7f4ef; position: relative; overflow: hidden"
+      >
+        <div
+          style="
+            position: absolute;
+            top: -120px;
+            left: -100px;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: rgba(180, 150, 110, 0.08);
+            filter: blur(10px);
+          "
+        ></div>
+
+        <div class="container" style="position: relative; z-index: 2">
+          <div
+            style="text-align: center; max-width: 720px; margin: 0 auto 70px"
+          >
+            <div
+              class="hero-badge"
+              style="
+                background: rgba(140, 110, 80, 0.08);
+                color: #7b5e45;
+                border: 1px solid rgba(123, 94, 69, 0.08);
+              "
+            >
+              How it works
+            </div>
+
+            <h2
+              style="
+                font-size: 2.8rem;
+                line-height: 1.1;
+                color: #2a241f;
+                margin-top: 18px;
+                font-weight: 800;
+              "
+            >
+              Simple, transparent, impactful
+            </h2>
+
+            <p
+              style="
+                color: #756d65;
+                margin-top: 16px;
+                line-height: 1.8;
+                font-size: 1.05rem;
+              "
+            >
+              Every donated device goes through a thoughtful process designed to
+              protect privacy, reduce waste, and help students succeed.
+            </p>
+          </div>
+
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(2, 1fr);
+              gap: 28px;
+            "
+          >
+            <!-- CARD 1 -->
+            <div
+              style="
+                background: rgba(255, 255, 255, 0.72);
+                backdrop-filter: blur(14px);
+                border-radius: 34px;
+                padding: 34px;
+                border: 1px solid rgba(0, 0, 0, 0.04);
+                box-shadow: 0 10px 35px rgba(0, 0, 0, 0.04);
+                position: relative;
+                overflow: hidden;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: -20px;
+                  right: 20px;
+                  font-size: 5rem;
+                  font-weight: 800;
+                  color: rgba(0, 0, 0, 0.04);
+                "
+              >
+                01
+              </div>
+
+              <div
+                style="
+                  width: 64px;
+                  height: 64px;
+                  border-radius: 20px;
+                  background: #efe5d8;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 1.6rem;
+                  margin-bottom: 24px;
+                "
+              >
+                <img
+                  src="donate.png"
+                  style="width: 60px; height: 60px"
+                  alt=""
+                />
+              </div>
+
+              <h3
+                style="font-size: 1.6rem; color: #2a241f; margin-bottom: 14px"
+              >
+                You donate
+              </h3>
+
+              <p style="color: #756d65; line-height: 1.8; font-size: 1rem">
+                Drop off or ship any working device, we handle logistics and
+                make the process easy from start to finish.
+              </p>
+            </div>
+
+            <!-- CARD 2 -->
+            <div
+              style="
+                background: rgba(255, 255, 255, 0.72);
+                backdrop-filter: blur(14px);
+                border-radius: 34px;
+                padding: 34px;
+                border: 1px solid rgba(0, 0, 0, 0.04);
+                box-shadow: 0 10px 35px rgba(0, 0, 0, 0.04);
+                position: relative;
+                overflow: hidden;
+                transform: translateY(26px);
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: -20px;
+                  right: 20px;
+                  font-size: 5rem;
+                  font-weight: 800;
+                  color: rgba(0, 0, 0, 0.04);
+                "
+              >
+                02
+              </div>
+
+              <div
+                style="
+                  width: 64px;
+                  height: 64px;
+                  border-radius: 20px;
+                  background: #ede7da;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 1.6rem;
+                  margin-bottom: 24px;
+                "
+              >
+                <img
+                  src="inspect.png"
+                  style="width: 60px; height: 60px"
+                  alt=""
+                />
+              </div>
+
+              <h3
+                style="font-size: 1.6rem; color: #2a241f; margin-bottom: 14px"
+              >
+                We inspect
+              </h3>
+
+              <p style="color: #756d65; line-height: 1.8; font-size: 1rem">
+                Each device goes through diagnostics, cleaning, and a certified
+                data wipe to keep personal information secure.
+              </p>
+            </div>
+
+            <!-- CARD 3 -->
+            <div
+              style="
+                background: rgba(255, 255, 255, 0.72);
+                backdrop-filter: blur(14px);
+                border-radius: 34px;
+                padding: 34px;
+                border: 1px solid rgba(0, 0, 0, 0.04);
+                box-shadow: 0 10px 35px rgba(0, 0, 0, 0.04);
+                position: relative;
+                overflow: hidden;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: -20px;
+                  right: 20px;
+                  font-size: 5rem;
+                  font-weight: 800;
+                  color: rgba(0, 0, 0, 0.04);
+                "
+              >
+                03
+              </div>
+
+              <div
+                style="
+                  width: 64px;
+                  height: 64px;
+                  border-radius: 20px;
+                  background: #efe5d8;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 1.6rem;
+                  margin-bottom: 24px;
+                "
+              >
+                <img
+                  src="restore.png"
+                  style="width: 60px; height: 60px"
+                  alt=""
+                />
+              </div>
+
+              <h3
+                style="font-size: 1.6rem; color: #2a241f; margin-bottom: 14px"
+              >
+                We restore
+              </h3>
+
+              <p style="color: #756d65; line-height: 1.8; font-size: 1rem">
+                Devices are repaired, upgraded, and optimized with modern
+                software to extend their lifespan.
+              </p>
+            </div>
+
+            <!-- CARD 4 -->
+            <div
+              style="
+                background: rgba(255, 255, 255, 0.72);
+                backdrop-filter: blur(14px);
+                border-radius: 34px;
+                padding: 34px;
+                border: 1px solid rgba(0, 0, 0, 0.04);
+                box-shadow: 0 10px 35px rgba(0, 0, 0, 0.04);
+                position: relative;
+                overflow: hidden;
+                transform: translateY(26px);
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: -20px;
+                  right: 20px;
+                  font-size: 5rem;
+                  font-weight: 800;
+                  color: rgba(0, 0, 0, 0.04);
+                "
+              >
+                04
+              </div>
+
+              <div
+                style="
+                  width: 64px;
+                  height: 64px;
+                  border-radius: 20px;
+                  background: #ede7da;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 1.6rem;
+                  margin-bottom: 24px;
+                "
+              >
+                <img
+                  src="deliver.png"
+                  style="width: 60px; height: 60px"
+                  alt=""
+                />
+              </div>
+
+              <h3
+                style="font-size: 1.6rem; color: #2a241f; margin-bottom: 14px"
+              >
+                We deliver
+              </h3>
+
+              <p style="color: #756d65; line-height: 1.8; font-size: 1rem">
+                Restored devices are matched with local students and families,
+                at absolutely no cost.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="container" style="margin-bottom: 80px">
+        <div
+          style="
+            position: relative;
+            overflow: hidden;
+            border-radius: 40px;
+            padding: 54px;
+            background: linear-gradient(
+              180deg,
+              rgba(255, 255, 255, 0.72) 0%,
+              rgba(248, 244, 238, 0.92) 100%
+            );
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(12px);
+          "
+        >
+          <!-- subtle glow -->
+          <div
+            style="
+              position: absolute;
+              top: -100px;
+              right: -100px;
+              width: 240px;
+              height: 240px;
+              border-radius: 50%;
+              background: rgba(196, 163, 120, 0.08);
+            "
+          ></div>
+
+          <div
+            style="
+              position: relative;
+              z-index: 2;
+              display: grid;
+              grid-template-columns: 1.1fr 1fr;
+              gap: 42px;
+              align-items: center;
+            "
+          >
+            <!-- LEFT -->
+            <div>
+              <div
+                class="hero-badge"
+                style="
+                  background: rgba(140, 110, 80, 0.08);
+                  color: #7b5e45;
+                  border: 1px solid rgba(123, 94, 69, 0.08);
+                  margin-bottom: 22px;
+                "
+              >
+                Student-led initiative
+              </div>
+
+              <h2
+                style="
+                  font-size: 2.9rem;
+                  line-height: 1.05;
+                  color: #2a241f;
+                  margin-bottom: 20px;
+                  font-weight: 800;
+                "
+              >
+                Five students,<br />
+                one shared mission
+              </h2>
+
+              <p
+                style="
+                  color: #756d65;
+                  line-height: 1.9;
+                  font-size: 1.05rem;
+                  max-width: 520px;
+                "
+              >
+                We’re a group of rising seniors from Andover High School working
+                to give old technology a second life.
+              </p>
+
+              <button
+                onclick="showPage('about')"
+                style="
+                  margin-top: 28px;
+                  padding: 16px 28px;
+                  border: none;
+                  border-radius: 999px;
+                  background: #e9dac7;
+                  color: #4b3b2d;
+                  font-weight: 700;
+                  font-size: 1rem;
+                  cursor: pointer;
+                "
+              >
+                Meet the team →
+              </button>
+            </div>
+
+            <!-- RIGHT -->
+            <div
+              style="
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 18px;
+              "
+            >
+              <div
+                style="
+                  background: rgba(255, 255, 255, 0.7);
+                  border-radius: 28px;
+                  padding: 28px;
+                  border: 1px solid rgba(0, 0, 0, 0.04);
+                "
+              >
+                <div
+                  style="
+                    font-size: 2.3rem;
+                    font-weight: 800;
+                    color: #2a241f;
+                    margin-bottom: 6px;
+                  "
+                >
+                  100%
+                </div>
+
+                <div style="color: #756d65">Volunteer-run</div>
+              </div>
+
+              <div
+                style="
+                  background: rgba(255, 255, 255, 0.7);
+                  border-radius: 28px;
+                  padding: 28px;
+                  border: 1px solid rgba(0, 0, 0, 0.04);
+                  transform: translateY(22px);
+                "
+              >
+                <div
+                  style="
+                    font-size: 2.3rem;
+                    font-weight: 800;
+                    color: #2a241f;
+                    margin-bottom: 6px;
+                  "
+                >
+                  $0
+                </div>
+
+                <div style="color: #756d65">Cost to recipients</div>
+              </div>
+
+              <div
+                style="
+                  background: rgba(255, 255, 255, 0.7);
+                  border-radius: 28px;
+                  padding: 28px;
+                  border: 1px solid rgba(0, 0, 0, 0.04);
+                "
+              >
+                <div
+                  style="
+                    font-size: 2.3rem;
+                    font-weight: 800;
+                    color: #2a241f;
+                    margin-bottom: 6px;
+                  "
+                >
+                  5
+                </div>
+
+                <div style="color: #756d65">Student members</div>
+              </div>
+
+              <div
+                style="
+                  background: rgba(255, 255, 255, 0.7);
+                  border-radius: 28px;
+                  padding: 28px;
+                  border: 1px solid rgba(0, 0, 0, 0.04);
+                  transform: translateY(22px);
+                "
+              >
+                <div
+                  style="
+                    font-size: 2.3rem;
+                    font-weight: 800;
+                    color: #2a241f;
+                    margin-bottom: 6px;
+                  "
+                >
+                  2025
+                </div>
+
+                <div style="color: #756d65">Founded locally</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <div class="footer-brand">
+          Digital Reborn — technology with a second life
+        </div>
+        <div class="footer-links">
+          <a onclick="showPage('ourgoal')">Our goal</a
+          ><a onclick="showPage('about')">About</a
+          ><a onclick="showPage('donation')">Donate</a
+          ><a onclick="showPage('contact')">Contact</a>
+        </div>
+      </footer>
+    </div>
+
+    <!-- OUR GOAL -->
+    <div class="page" id="page-ourgoal">
+      <div class="container" style="padding: 96px 0 64px">
+        <div style="text-align: center; max-width: 720px; margin: 0 auto 48px">
+          <div class="hero-badge">Why we exist</div>
+          <h1 style="font-size: 3rem; font-weight: 800">
+            Closing the digital divide
+          </h1>
+          <p style="color: var(--gray-500)">
+            Millions of functional devices are discarded each year while
+            students struggle without access. We're here to rewrite that story.
+          </p>
+        </div>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-bottom: 56px;
+          "
+        >
+          <div
+            style="background: var(--sand); border-radius: 48px; padding: 48px"
+          >
+            <div
+              style="font-size: 2.8rem; font-weight: 800; color: var(--accent)"
+            >
+              ↓46%
+            </div>
+            <h3 style="font-size: 1.6rem; margin: 16px 0 8px">
+              e-waste reduction
+            </h3>
+            <p>
+              Refurbishing a single laptop saves 190kg CO₂ and prevents toxic
+              landfill leakage.
+            </p>
+          </div>
+          <div
+            style="background: var(--sand); border-radius: 48px; padding: 48px"
+          >
+            <div
+              style="font-size: 2.8rem; font-weight: 800; color: var(--accent)"
+            >
+              +2.3M
+            </div>
+            <h3 style="font-size: 1.6rem; margin: 16px 0 8px">
+              students without devices
+            </h3>
+            <p>
+              In Massachusetts alone, thousands lack home internet or a
+              computer. We bridge that gap.
+            </p>
+          </div>
+        </div>
+        <div
+          style="
+            position: relative;
+            overflow: hidden;
+            margin-top: 70px;
+            padding: 54px 42px;
+            border-radius: 38px;
+            text-align: center;
+
+            background: linear-gradient(
+              180deg,
+              rgba(255, 255, 255, 0.78) 0%,
+              rgba(247, 242, 235, 0.95) 100%
+            );
+
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.04);
+            backdrop-filter: blur(12px);
+          "
+        >
+          <!-- subtle background glow -->
+          <div
+            style="
+              position: absolute;
+              top: -80px;
+              right: -60px;
+              width: 220px;
+              height: 220px;
+              border-radius: 50%;
+              background: rgba(196, 163, 120, 0.08);
+            "
+          ></div>
+
+          <div
+            style="
+              position: absolute;
+              bottom: -90px;
+              left: -70px;
+              width: 180px;
+              height: 180px;
+              border-radius: 50%;
+              background: rgba(180, 150, 110, 0.06);
+            "
+          ></div>
+
+          <div style="position: relative; z-index: 2">
+            <div
+              class="hero-badge"
+              style="
+                background: rgba(140, 110, 80, 0.08);
+                color: #7b5e45;
+                border: 1px solid rgba(123, 94, 69, 0.08);
+                margin-bottom: 22px;
+              "
+            >
+              Our pledge
+            </div>
+
+            <h3
+              style="
+                font-size: 2.4rem;
+                color: #2a241f;
+                margin-bottom: 18px;
+                font-weight: 800;
+              "
+            >
+              Technology should be accessible
+            </h3>
+
+            <p
+              style="
+                max-width: 720px;
+                margin: 0 auto;
+                color: #756d65;
+                line-height: 1.9;
+                font-size: 1.08rem;
+              "
+            >
+              Every device we restore is provided completely free to recipients.
+              We focus on transparency, responsible refurbishing, and making
+              sure each device reaches someone who truly needs it.
+            </p>
+
+            <div
+              style="
+                display: flex;
+                justify-content: center;
+                gap: 18px;
+                flex-wrap: wrap;
+                margin-top: 34px;
+              "
+            ></div>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <div class="footer-brand">
+          Digital Reborn — restore. empower. repeat.
+        </div>
+        <div class="footer-links">
+          <a onclick="showPage('home')">Home</a
+          ><a onclick="showPage('donation')">Donate</a>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ABOUT PAGE with stunning team cards -->
+    <div class="page" id="page-about">
+      <div class="container" style="padding: 96px 0 64px">
+        <div style="text-align: center; max-width: 680px; margin: 0 auto 56px">
+          <div class="hero-badge">the people behind it</div>
+          <h2 style="font-size: 2.8rem">Five students, one shared purpose</h2>
+          <!-- <p style="color: var(--gray-500)">
+            Rising seniors from Andover High — engineers, designers, advocates.
+          </p> -->
+        </div>
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-img"><img src="aryaman_photo.png" alt="" /></div>
+            <div class="team-info">
+              <div class="team-name">Aryaman Hegde</div>
+              <div class="team-role">CFO</div>
+              <div class="team-bio">
+                Manages funding, outreach, and strategic partnerships. Ensures
+                resources go where they matter most.
+              </div>
+            </div>
+          </div>
+          <div class="team-card">
+            <div class="team-img"><img src="prajan_photo.webp" alt="" /></div>
+            <div class="team-info">
+              <div class="team-name">Prajan Ashok Pandiavel</div>
+              <div class="team-role">CPO</div>
+              <div class="team-bio">
+                Leads device repair, quality control, and co-built the brand
+                identity. Passionate about embedded systems.
+              </div>
+            </div>
+          </div>
+          <div class="team-card">
+            <div class="team-img"><img src="pranav_photo.png" alt="" /></div>
+            <div class="team-info">
+              <div class="team-name">Pranav Polisetti</div>
+              <div class="team-role">COO</div>
+              <div class="team-bio">
+                Coordinates operations, community outreach, and app development
+                workflows. Aeronautics enthusiast.
+              </div>
+            </div>
+          </div>
+          <div class="team-card">
+            <div class="team-img"><img src="muhammad.png" alt="" /></div>
+            <div class="team-info">
+              <div class="team-name">Muhammad Khan</div>
+              <div class="team-role">CTO</div>
+              <div class="team-bio">
+                Cybersecurity lead, data destruction protocols, platform & web
+                development. Ensures privacy-first processes.
+              </div>
+            </div>
+          </div>
+          <div class="team-card">
+            <div class="team-img"><img src="saketh_photo.webp" alt="" /></div>
+            <div class="team-info">
+              <div class="team-name">Saketh Kunala</div>
+              <div class="team-role">CMO</div>
+              <div class="team-bio">
+                Marketing, school outreach, environmental strategy, and app
+                contributions. Drives awareness campaigns.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          style="
+            position: relative;
+            margin-top: 72px;
+            text-align: center;
+            padding: 52px 32px;
+            border-radius: 18px;
+            overflow: hidden;
+
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            backdrop-filter: blur(10px);
+
+            max-width: 820px;
+            margin-left: auto;
+            margin-right: auto;
+          "
+        >
+          <!-- abstract glow 1 -->
+          <div
+            style="
+              position: absolute;
+              top: -80px;
+              right: -60px;
+              width: 220px;
+              height: 220px;
+              border-radius: 50%;
+              background: rgba(196, 163, 120, 0.08);
+            "
+          ></div>
+
+          <!-- abstract glow 2 -->
+          <div
+            style="
+              position: absolute;
+              bottom: -90px;
+              left: -70px;
+              width: 180px;
+              height: 180px;
+              border-radius: 50%;
+              background: rgba(180, 150, 110, 0.06);
+            "
+          ></div>
+
+          <!-- content -->
+          <div style="position: relative; z-index: 2">
+            <h3
+              style="
+                font-size: 2rem;
+                color: #2a241f;
+                margin-bottom: 10px;
+                font-weight: 800;
+              "
+            >
+              We're just getting started
+            </h3>
+
+            <p
+              style="
+                max-width: 600px;
+                margin: 0 auto;
+                color: #756d65;
+                line-height: 1.7;
+                font-size: 1.05rem;
+              "
+            >
+              Interested in partnering or volunteering? Let's talk.
+            </p>
+
+            <button
+              onclick="showPage('contact')"
+              style="
+                margin-top: 22px;
+                background: rgba(140, 110, 80, 0.08);
+                color: #7b5e45;
+                border: 1px solid rgba(123, 94, 69, 0.12);
+                font-weight: 600;
+                padding: 10px 18px;
+                border-radius: 12px;
+                cursor: pointer;
+                transition: all 0.2s ease;
+              "
+              onmouseover="
+                this.style.transform = 'translateY(-2px)';
+                this.style.boxShadow = '0 10px 20px rgba(0,0,0,0.08)';
+              "
+              onmouseout="
+                this.style.transform = 'translateY(0px)';
+                this.style.boxShadow = 'none';
+              "
+            >
+              Get in touch →
+            </button>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <div class="footer-brand">
+          © Digital Reborn 2025 — student-led, impact-driven
+        </div>
+      </footer>
+    </div>
+
+    <!-- DONATION PAGE -->
+    <div class="page" id="page-donation">
+      <div class="container" style="padding: 96px 0 64px">
+        <div style="text-align: center">
+          <div class="hero-badge">Support the mission</div>
+          <h2 style="font-size: 2.6rem">Two ways to make a difference</h2>
+          <p style="color: var(--gray-500)">
+            Your contribution directly helps students get connected.
+          </p>
+        </div>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            margin-top: 48px;
+          "
+        >
+          <div
+            style="
+              width: 100%;
+              /* height: 20px; */
+              overflow: hidden;
+              border-radius: 28px;
+              position: relative;
+            "
+          >
+            <iframe
+              src="https://hcb.hackclub.com/donations/start/digital-reborn"
+              style="
+                width: 100%;
+                height: 870px;
+                border: none;
+                background: #fefaf5;
+
+                /* transform: translateY(120px); */
+              "
+              title="Donation form via HCB"
+            ></iframe>
+          </div>
+          <div
+            class="donation-card"
+            style="
+              position: relative;
+              overflow: hidden;
+              border-radius: 32px;
+              padding: 42px;
+              background: linear-gradient(
+                145deg,
+                #ffffff 0%,
+                #f8fafc 55%,
+                #eef6ff 100%
+              );
+              border: 1px solid rgba(15, 23, 42, 0.06);
+              box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              min-height: 620px;
+            "
+          >
+            <div
+              style="
+                position: absolute;
+                top: -120px;
+                right: -120px;
+                width: 260px;
+                height: 260px;
+                border-radius: 50%;
+                background: rgba(37, 99, 235, 0.08);
+              "
+            ></div>
+
+            <div
+              style="
+                position: absolute;
+                bottom: -100px;
+                left: -100px;
+                width: 220px;
+                height: 220px;
+                border-radius: 50%;
+                background: rgba(59, 130, 246, 0.06);
+              "
+            ></div>
+
+            <div style="position: relative; z-index: 2">
+              <div
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 10px;
+                  padding: 10px 18px;
+                  border-radius: 999px;
+                  background: rgba(37, 99, 235, 0.08);
+                  color: #2563eb;
+                  font-weight: 700;
+                  font-size: 0.9rem;
+                  margin-bottom: 24px;
+                "
+              >
+                Device Donation
+              </div>
+
+              <h3
+                style="
+                  font-size: 2.4rem;
+                  line-height: 1.1;
+                  margin-bottom: 18px;
+                  color: #0f172a;
+                "
+              >
+                Turn unused tech into opportunity
+              </h3>
+
+              <p
+                style="
+                  font-size: 1.05rem;
+                  line-height: 1.8;
+                  color: #64748b;
+                  margin-bottom: 34px;
+                  max-width: 520px;
+                "
+              >
+                Your old laptop, tablet, or phone can help a student learn,
+                connect, and succeed. We accept working or repairable devices
+                and handle restoration, cleaning, and secure data wiping.
+              </p>
+
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  gap: 18px;
+                  margin-bottom: 38px;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    align-items: flex-start;
+                    gap: 16px;
+                    padding: 18px;
+                    border-radius: 22px;
+                    background: rgba(255, 255, 255, 0.8);
+                    backdrop-filter: blur(10px);
+                    border: 1px solid rgba(15, 23, 42, 0.05);
+                  "
+                >
+                  <div class="step-marker">1</div>
+                  <div>
+                    <strong>Quick contact form</strong>
+                    <p style="margin-top: 4px; color: var(--gray-500)">
+                      Takes less than 2 minutes to complete.
+                    </p>
+                  </div>
+                </div>
+
+                <div
+                  style="
+                    display: flex;
+                    align-items: flex-start;
+                    gap: 16px;
+                    padding: 18px;
+                    border-radius: 22px;
+                    background: rgba(255, 255, 255, 0.8);
+                    backdrop-filter: blur(10px);
+                    border: 1px solid rgba(15, 23, 42, 0.05);
+                  "
+                >
+                  <div class="step-marker">2</div>
+                  <div>
+                    <strong>Pickup or drop-off</strong>
+                    <p style="margin-top: 4px; color: var(--gray-500)">
+                      Flexible options available around Andover.
+                    </p>
+                  </div>
+                </div>
+
+                <div
+                  style="
+                    display: flex;
+                    align-items: flex-start;
+                    gap: 16px;
+                    padding: 18px;
+                    border-radius: 22px;
+                    background: rgba(255, 255, 255, 0.8);
+                    backdrop-filter: blur(10px);
+                    border: 1px solid rgba(15, 23, 42, 0.05);
+                  "
+                >
+                  <div class="step-marker">3</div>
+                  <div>
+                    <strong>Restored & redistributed</strong>
+                    <p style="margin-top: 4px; color: var(--gray-500)">
+                      Devices are securely wiped, repaired, and given to
+                      students.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <button
+                class="btn-primary"
+                style="
+                  width: 100%;
+                  padding: 18px;
+                  border-radius: 999px;
+                  font-weight: 700;
+                  font-size: 1rem;
+                  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.25);
+                "
+                onclick="showPage('contact')"
+              >
+                Donate a device →
+              </button>
+              <!-- 
+              <div
+                style="
+                  margin-top: 24px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 10px;
+                  color: #64748b;
+                  font-size: 0.92rem;
+                "
+              >
+                🔒 Secure data wipe included
+              </div> -->
+            </div>
+          </div>
+        </div>
+        <div
+          style="
+            position: relative;
+            margin-top: 72px;
+            text-align: center;
+            padding: 52px 32px;
+            border-radius: 18px;
+            overflow: hidden;
+
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            backdrop-filter: blur(10px);
+
+            max-width: 820px;
+            margin-left: auto;
+            margin-right: auto;
+          "
+        >
+          <!-- abstract glow 1 -->
+          <div
+            style="
+              position: absolute;
+              top: -80px;
+              right: -60px;
+              width: 220px;
+              height: 220px;
+              border-radius: 50%;
+              background: rgba(196, 163, 120, 0.08);
+            "
+          ></div>
+
+          <!-- abstract glow 2 -->
+          <div
+            style="
+              position: absolute;
+              bottom: -90px;
+              left: -70px;
+              width: 180px;
+              height: 180px;
+              border-radius: 50%;
+              background: rgba(180, 150, 110, 0.06);
+            "
+          ></div>
+
+          <!-- content -->
+          <div style="position: relative; z-index: 2">
+            <h3
+              style="
+                font-size: 2rem;
+                color: #2a241f;
+                margin-bottom: 10px;
+                font-weight: 800;
+              "
+            >
+              Based in Andover, MA
+            </h3>
+
+            <p
+              style="
+                max-width: 600px;
+                margin: 0 auto;
+                color: #756d65;
+                line-height: 1.7;
+                font-size: 1.05rem;
+              "
+            >
+              We serve local communities first, with plans to expand regionally.
+              Every device transforms a neighbor's future.
+            </p>
+
+            <!-- accent line -->
+            <div
+              style="
+                width: 40px;
+                height: 2px;
+                background: #7b5e45;
+                margin: 20px auto 0;
+                border-radius: 2px;
+              "
+            ></div>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <div class="footer-brand">Every device creates a ripple. Join us.</div>
+      </footer>
+    </div>
+
+    <!-- CONTACT PAGE centered -->
+    <div class="page" id="page-contact">
+      <div class="container" style="padding: 96px 0 64px">
+        <div style="text-align: center">
+          <div class="hero-badge">Reach out</div>
+          <h2 style="font-size: 2.6rem">Let's connect</h2>
+          <p style="color: var(--gray-500)">
+            Questions, device offers, partnership ideas - we'd love to hear from
+            you.
+          </p>
+        </div>
+        <div class="contact-centered">
+          <div class="form-card-centered">
+            <form id="contactForm">
+              <div class="input-group">
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="Full name *"
+                  required
+                />
+              </div>
+              <div class="input-group">
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Email address *"
+                  required
+                />
+              </div>
+              <div class="input-group">
+                <input
+                  type="text"
+                  id="subject"
+                  placeholder="Subject *"
+                  required
+                />
+              </div>
+              <div class="input-group">
+                <textarea
+                  id="message"
+                  rows="4"
+                  placeholder="Your message *"
+                ></textarea>
+              </div>
+              <button type="submit" class="submit-btn" id="sendBtn">
+                Send message →
+              </button>
+              <div
+                id="formStatus"
+                style="margin-top: 20px; font-size: 0.85rem; text-align: center"
+              ></div>
+            </form>
+            <div
+              style="
+                margin-top: 32px;
+                text-align: center;
+                border-top: 1px solid var(--gray-200);
+                padding-top: 28px;
+              "
+            >
+              <p style="color: var(--gray-500); font-size: 0.85rem">
+                digitalrebornteam@gmail.com | Andover, MA
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          style="
+            margin-top: 22px;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+          "
+        >
+          <a
+            href="https://www.linkedin.com/company/digital-reborn-e-waste/?viewAsMember=true"
+            target="_blank"
+            style="
+              width: 62px;
+              height: 62px;
+              border-radius: 16px;
+              background: #f5efe6;
+              border: 1px solid rgba(0, 0, 0, 0.05);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: #5c4b3a;
+              transition: 0.25s ease;
+              text-decoration: none;
+            "
+            onmouseover="
+              this.style.transform = 'translateY(-4px)';
+              this.style.background = '#e9dac7';
+            "
+            onmouseout="
+              this.style.transform = 'translateY(0px)';
+              this.style.background = '#f5efe6';
+            "
+          >
+            <svg width="30" height="30" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6S0 4.88 0 3.5 1.11 1 2.49 1s2.49 1.12 2.49 2.5zM.5 8h4v12h-4V8zm7 0h3.8v1.7h.1c.5-.95 1.75-1.95 3.6-1.95 3.85 0 4.56 2.5 4.56 5.76V20h-4v-5.5c0-1.3-.03-3-1.84-3-1.84 0-2.12 1.43-2.12 2.9V20h-4V8z"
+              />
+            </svg>
+          </a>
+
+          <a
+            href="https://www.instagram.com/digitalrebornteam"
+            target="_blank"
+            style="
+              width: 62px;
+              height: 62px;
+              border-radius: 16px;
+              background: #f5efe6;
+              border: 1px solid rgba(0, 0, 0, 0.05);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: #5c4b3a;
+              transition: 0.25s ease;
+              text-decoration: none;
+            "
+            onmouseover="
+              this.style.transform = 'translateY(-4px)';
+              this.style.background = '#e9dac7';
+            "
+            onmouseout="
+              this.style.transform = 'translateY(0px)';
+              this.style.background = '#f5efe6';
+            "
+          >
+            <svg width="30" height="30" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10.5 3a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM12 7a5 5 0 110 10 5 5 0 010-10zm0 2a3 3 0 100 6 3 3 0 000-6z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <footer>
+        <div class="footer-brand">
+          Digital Reborn — turning old tech into bridges
+        </div>
+        <div class="footer-links">
+          <a onclick="showPage('home')">Home</a
+          ><a onclick="showPage('about')">About</a>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+      function showPage(pageId) {
+        document
+          .querySelectorAll(".page")
+          .forEach((p) => p.classList.remove("active"));
+        document.getElementById(`page-${pageId}`).classList.add("active");
+        document
+          .querySelectorAll(".nav-links a")
+          .forEach((a) => a.classList.remove("active"));
+        const activeLink = document.getElementById(`nav-${pageId}`);
+        if (activeLink) activeLink.classList.add("active");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      emailjs.init({ publicKey: "mu09EOys5meVZ73qu" });
+      const contactForm = document.getElementById("contactForm");
+      if (contactForm) {
+        contactForm.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const btn = document.getElementById("sendBtn");
+          btn.disabled = true;
+          btn.textContent = "Sending...";
+          try {
+            await emailjs.send("service_6jw08ej", "template_rot6pn9", {
+              from_name: document.getElementById("name").value,
+              from_email: document.getElementById("email").value,
+              subject: document.getElementById("subject").value,
+              message: document.getElementById("message").value,
+              to_name: "Digital Reborn Team",
+            });
+            document.getElementById("formStatus").innerHTML =
+              '<span style="color:#2c5f8a;">✓ Message sent! We’ll reply within 48h.</span>';
+            contactForm.reset();
+          } catch (err) {
+            document.getElementById("formStatus").innerHTML =
+              '<span style="color:#b91c1c;">⚠️ Could not send. Please email hello@digitalreborn.org directly.</span>';
+          } finally {
+            btn.disabled = false;
+            btn.textContent = "Send message →";
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
