@@ -699,6 +699,61 @@
           [style*="transform: translateY"] {
             transform: none !important;
           }
+
+          .page {
+            padding-top: 20px !important;
+          }
+
+          /* Extra padding for pages with hero badges/section headers */
+          #page-ourgoal .container,
+          #page-about .container,
+          #page-donation .container,
+          #page-contact .container {
+            padding-top: 40px !important;
+          }
+
+          /* Fix the container padding on all pages */
+          .page .container {
+            padding-top: 30px !important;
+          }
+
+          /* Specifically target the main content areas */
+          #page-ourgoal > .container,
+          #page-about > .container,
+          #page-donation > .container,
+          #page-contact > .container {
+            padding-top: 60px !important;
+          }
+
+          /* Add spacing for the badge/tag at the top of each page */
+          .hero-badge {
+            margin-top: 20px !important;
+          }
+
+          /* Ensure the first element in each page has enough spacing */
+          .page > .container > div:first-child {
+            margin-top: 20px !important;
+          }
+
+          /* Specific fix for Our Goal page */
+          #page-ourgoal .container > div:first-child {
+            padding-top: 20px !important;
+          }
+
+          /* Specific fix for About page team grid */
+          #page-about .team-grid {
+            margin-top: 30px !important;
+          }
+
+          /* Specific fix for Donation page */
+          #page-donation .container > div:first-child {
+            margin-bottom: 30px !important;
+          }
+
+          /* Specific fix for Contact page form */
+          #page-contact .contact-centered {
+            margin-top: 30px !important;
+          }
         }
 
         /* Small phones (up to 480px) */
